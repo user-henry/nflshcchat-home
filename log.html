@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>更新日志 - NFLSHC Chat</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .page-hero { position: relative; z-index: 10; text-align: center; padding: calc(var(--nav-h) + 8vh) 24px 6vh; min-height: 50vh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    .page-badge { display: inline-block; background: rgba(255,215,0,0.12); border: 1px solid rgba(255,215,0,0.35); color: var(--gold); font-size: 13px; font-weight: 600; padding: 5px 16px; border-radius: 999px; margin-bottom: 16px; }
+    .page-hero h1 { font-size: clamp(36px, 6vw, 72px); font-weight: 800; color: var(--gold); text-shadow: 0 4px 30px rgba(255,215,0,0.25); margin-bottom: 12px; }
+    .page-hero p { font-size: clamp(14px, 1.8vw, 18px); color: rgba(255,255,255,0.75); max-width: 560px; line-height: 1.7; }
+
+    .log-section { position: relative; z-index: 10; max-width: 800px; margin: 0 auto; padding: 0 24px 80px; }
+    .log-entry { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 28px 30px; margin-bottom: 20px; transition: border-color .2s; }
+    .log-entry:hover { border-color: rgba(255,215,0,0.25); }
+    .log-entry.new { border-color: rgba(255,215,0,0.2); background: rgba(255,215,0,0.04); }
+    .log-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+    .log-ver { font-size: 18px; font-weight: 800; color: var(--gold); }
+    .log-date { font-size: 13px; color: rgba(255,255,255,0.45); }
+    .log-badge { font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 999px; background: rgba(255,215,0,0.15); color: var(--gold-light); border: 1px solid rgba(255,215,0,0.3); }
+    .log-changes { list-style: none; }
+    .log-changes li { padding: 6px 0; font-size: 14px; color: rgba(255,255,255,0.8); display: flex; align-items: flex-start; gap: 10px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .log-changes li:last-child { border-bottom: none; }
+    .log-changes li::before { content: '✨'; flex-shrink: 0; font-size: 12px; margin-top: 2px; }
+    .log-changes li.new-tag::before { content: '🆕'; }
+    .log-changes li.fix-tag::before { content: '🔧'; }
+    .log-changes li.opt-tag::before { content: '⚡'; }
+    .log-divider { text-align: center; padding: 8px 0 16px; color: rgba(255,255,255,0.25); font-size: 13px; }
+  </style>
+</head>
+<body class="page-log">
+  <div class="aurora" aria-hidden="true">
+    <span class="blob blob-1"></span><span class="blob blob-2"></span>
+    <span class="blob blob-3"></span><span class="blob blob-4"></span><span class="blob blob-5"></span>
+    <span class="raster"></span>
+  </div>
+
+  <header class="navbar">
+    <div class="nav-inner">
+      <a class="brand" href="index.html">
+        <img src="https://cdn.luogu.com.cn/upload/image_hosting/5rdb3c08.png" alt="NFLSHC Chat" class="brand-logo" />
+        <span class="brand-word">NFLSHC Chat</span>
+      </a>
+      <nav class="menu">
+        <a href="windows.html">Windows 下载</a>
+        <a href="android.html">Android 下载</a>
+        <a href="log.html" class="active">更新日志</a>
+        <a href="https://help.nflshcchat.cc.cd" target="_blank">帮助文档</a>
+        <a href="register.html">注册账号</a>
+      </nav>
+      <a class="nav-cta" href="https://nflshcchat.cc.cd/chat" target="_blank">立即使用</a>
+    </div>
+  </header>
+
+  <div class="page-hero">
+    <div class="page-badge">📋 更新日志</div>
+    <h1>更新日志</h1>
+    <p>记录 NFLSHC Chat 的每一次迭代，见证平台的成长与完善</p>
+  </div>
+
+  <div class="log-section">
+    <div class="version-info" style="display:flex;flex-wrap:wrap;gap:12px;margin-bottom:24px;justify-content:center;">
+      <span style="background:rgba(255,255,255,0.06);padding:8px 16px;border-radius:20px;font-size:13px;color:rgba(255,255,255,0.8);">当前版本: v2.2.0</span>
+      <span style="background:rgba(255,255,255,0.06);padding:8px 16px;border-radius:20px;font-size:13px;color:rgba(255,255,255,0.8);">最后更新: 2026年4月</span>
+      <span style="background:rgba(255,255,255,0.06);padding:8px 16px;border-radius:20px;font-size:13px;color:rgba(255,255,255,0.8);">数据存储: GitHub Issues</span>
+    </div>
+
+    <div class="log-entry new">
+      <div class="log-header">
+        <span class="log-ver">v2.2.0</span>
+        <span class="log-badge">最新版本</span>
+        <span class="log-date">2026年4月</span>
+      </div>
+      <ul class="log-changes">
+        <li class="new-tag">新增消息引用回复功能</li>
+        <li class="new-tag">新增群聊置顶消息功能</li>
+        <li class="new-tag">新增代码语法高亮 + 一键复制</li>
+        <li class="new-tag">新增好友系统（头像、等级、搜索）</li>
+        <li class="new-tag">新增用户等级/积分系统</li>
+        <li class="new-tag">新增个人数据仪表盘</li>
+        <li class="new-tag">新增语音消息功能</li>
+        <li class="new-tag">新增个人名片分享</li>
+        <li class="new-tag">新增键盘快捷键支持</li>
+        <li class="fix-tag">修复多个已知 Bug</li>
+      </ul>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-header">
+        <span class="log-ver">v2.1.1</span>
+        <span class="log-date">2026年4月</span>
+      </div>
+      <ul class="log-changes">
+        <li class="fix-tag">修复多个已知 Bug</li>
+      </ul>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-header">
+        <span class="log-ver">v2.1.0</span>
+        <span class="log-date">2026年4月</span>
+      </div>
+      <ul class="log-changes">
+        <li class="new-tag">新增 AI 群机器人功能</li>
+        <li class="fix-tag">修复多个已知 Bug</li>
+      </ul>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-header">
+        <span class="log-ver">v2.0.0</span>
+        <span class="log-date">2026年4月</span>
+      </div>
+      <ul class="log-changes">
+        <li class="new-tag">新增 Markdown 消息支持及实时预览</li>
+        <li class="new-tag">新增消息收藏功能</li>
+        <li class="new-tag">新增消息搜索功能</li>
+        <li class="new-tag">新增聊天记录导出功能</li>
+        <li class="new-tag">新增群聊统计面板（词云、趋势图、排行榜）</li>
+        <li class="fix-tag">修复多个已知 Bug</li>
+      </ul>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-header">
+        <span class="log-ver">v1.2.1</span>
+        <span class="log-date">2026年4月</span>
+      </div>
+      <ul class="log-changes">
+        <li class="fix-tag">修复多个已知 Bug</li>
+      </ul>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-header">
+        <span class="log-ver">v1.2.0</span>
+        <span class="log-date">2026年4月</span>
+      </div>
+      <ul class="log-changes">
+        <li class="new-tag">新增 @所有人 通知功能</li>
+        <li class="opt-tag">优化 UI 界面（改进颜色搭配、圆角、阴影、间距等视觉元素）</li>
+        <li class="opt-tag">移动端适配（响应式设计，在不同屏幕尺寸下正常显示）</li>
+        <li class="fix-tag">修复多个已知 Bug</li>
+      </ul>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-header">
+        <span class="log-ver">v1.1.0</span>
+        <span class="log-date">2026年3月</span>
+      </div>
+      <ul class="log-changes">
+        <li class="new-tag">新增找回密码功能</li>
+        <li class="fix-tag">修复多个已知 Bug</li>
+      </ul>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-header">
+        <span class="log-ver">v1.0.0</span>
+        <span class="log-date">2026年3月</span>
+      </div>
+      <ul class="log-changes">
+        <li class="new-tag">基础聊天功能（群聊/私聊）</li>
+        <li class="new-tag">用户注册登录系统</li>
+        <li class="new-tag">管理员后台管理系统</li>
+        <li class="new-tag">公告发布系统</li>
+        <li class="new-tag">意见反馈系统</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer class="footer" style="position:relative;z-index:10;padding:28px 24px;text-align:center;background:rgba(8,8,20,0.55);">
+    <div style="max-width:1100px;margin:0 auto;">
+      <div style="font-size:13px;color:rgba(255,255,255,0.5);margin-bottom:10px;">
+        <a href="index.html" style="color:var(--gold-light);text-decoration:none;">NFLSHC Chat</a> ·
+        <a href="windows.html" style="color:rgba(255,255,255,0.5);text-decoration:none;">Windows 下载</a> ·
+        <a href="android.html" style="color:rgba(255,255,255,0.5);text-decoration:none;">Android 下载</a> ·
+        <a href="https://help.nflshcchat.cc.cd" target="_blank" style="color:rgba(255,255,255,0.5);text-decoration:none;">帮助文档</a> ·
+        <a href="register.html" style="color:rgba(255,255,255,0.5);text-decoration:none;">注册账号</a>
+      </div>
+      <p style="font-size:12px;color:rgba(255,255,255,0.35);">Copyright © 2024-2026 NFLSHC Chat · MIT License</p>
+    </div>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
