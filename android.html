@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Android 客户端下载 - NFLSHC Chat</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .page-hero { position: relative; z-index: 10; text-align: center; padding: calc(var(--nav-h) + 8vh) 24px 6vh; min-height: 60vh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    .page-badge { display: inline-block; background: rgba(255,215,0,0.12); border: 1px solid rgba(255,215,0,0.35); color: var(--gold); font-size: 13px; font-weight: 600; padding: 5px 16px; border-radius: 999px; margin-bottom: 16px; }
+    .page-hero h1 { font-size: clamp(36px, 6vw, 72px); font-weight: 800; color: var(--gold); text-shadow: 0 4px 30px rgba(255,215,0,0.25); margin-bottom: 12px; }
+    .page-hero p { font-size: clamp(14px, 1.8vw, 18px); color: rgba(255,255,255,0.75); max-width: 560px; line-height: 1.7; }
+
+    .dl-section { position: relative; z-index: 10; max-width: 800px; margin: 0 auto; padding: 0 24px 80px; }
+    .apk-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 28px; }
+    .apk-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 20px; padding: 28px 24px; backdrop-filter: blur(8px); transition: transform .2s, border-color .2s; display: flex; flex-direction: column; gap: 14px; }
+    .apk-card:hover { transform: translateY(-3px); border-color: rgba(255,215,0,0.4); }
+    .apk-icon { font-size: 48px; }
+    .apk-name { font-size: 20px; font-weight: 700; }
+    .apk-desc { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.6; }
+    .apk-meta { font-size: 12px; color: rgba(255,255,255,0.4); }
+    .apk-btns { display: flex; flex-direction: column; gap: 8px; margin-top: auto; }
+    .apk-btn { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 11px 20px; border-radius: 999px; font-size: 14px; font-weight: 700; text-decoration: none; transition: transform .15s, box-shadow .2s; }
+    .apk-btn.gold { background: linear-gradient(135deg, var(--gold) 0%, var(--orange) 100%); color: #1a1a2e; box-shadow: 0 4px 14px rgba(255,215,0,0.3); }
+    .apk-btn.gold:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(255,215,0,0.5); }
+    .apk-btn.outline { background: rgba(255,255,255,0.08); color: #fff; border: 1px solid rgba(255,255,255,0.2); }
+    .apk-btn.outline:hover { background: rgba(255,255,255,0.14); }
+
+    .channels-box { background: rgba(255,215,0,0.06); border: 1px solid rgba(255,215,0,0.2); border-radius: 16px; padding: 20px 24px; margin-bottom: 24px; }
+    .channels-box h3 { font-size: 16px; font-weight: 700; margin-bottom: 12px; color: var(--gold-light); }
+    .channel-row { display: flex; flex-wrap: wrap; gap: 10px; }
+    .ch-btn { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; padding: 8px 18px; border-radius: 999px; text-decoration: none; }
+    .ch-btn.fast { background: linear-gradient(135deg, var(--gold) 0%, var(--orange) 100%); color: #1a1a2e; box-shadow: 0 4px 14px rgba(255,215,0,0.25); }
+    .ch-btn.fast:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(255,215,0,0.4); }
+    .ch-btn.mirror { background: rgba(255,255,255,0.08); color: #fff; border: 1px solid rgba(255,255,255,0.15); }
+    .ch-btn.mirror:hover { background: rgba(255,255,255,0.14); }
+    .ch-btn.github { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.75); border: 1px solid rgba(255,255,255,0.1); }
+    .ch-btn.github:hover { border-color: rgba(255,255,255,0.25); color: #fff; }
+
+    .requirements { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 20px 24px; }
+    .requirements h3 { font-size: 15px; font-weight: 700; margin-bottom: 12px; }
+    .req-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; }
+    .req-item { font-size: 13px; color: rgba(255,255,255,0.65); display: flex; align-items: center; gap: 8px; }
+    .req-item::before { content: '✓'; color: var(--gold); font-weight: 700; }
+
+    @media (max-width: 600px) { .apk-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body class="page-android">
+  <div class="aurora" aria-hidden="true">
+    <span class="blob blob-1"></span><span class="blob blob-2"></span>
+    <span class="blob blob-3"></span><span class="blob blob-4"></span><span class="blob blob-5"></span>
+    <span class="raster"></span>
+  </div>
+
+  <header class="navbar">
+    <div class="nav-inner">
+      <a class="brand" href="index.html">
+        <img src="https://cdn.luogu.com.cn/upload/image_hosting/5rdb3c08.png" alt="NFLSHC Chat" class="brand-logo" />
+        <span class="brand-word">NFLSHC Chat</span>
+      </a>
+      <nav class="menu">
+        <a href="windows.html">Windows 下载</a>
+        <a href="android.html" class="active">Android 下载</a>
+        <a href="log.html">更新日志</a>
+        <a href="https://help.nflshcchat.cc.cd" target="_blank">帮助文档</a>
+        <a href="register.html">注册账号</a>
+      </nav>
+      <a class="nav-cta" href="https://nflshcchat.cc.cd/chat" target="_blank">立即使用</a>
+    </div>
+  </header>
+
+  <div class="page-hero">
+    <div class="page-badge">📱 Android 客户端</div>
+    <h1>Android 应用</h1>
+    <p>专为 Android 用户打造，支持 Android 5.0 及以上系统，随时随地与同学聊天。支持标准版和 pro 版。</p>
+  </div>
+
+  <div class="dl-section">
+    <div class="apk-grid">
+      <div class="apk-card">
+        <div class="apk-icon">📱</div>
+        <div class="apk-name">NFLSHC Chat</div>
+        <div class="apk-desc">标准版，适合大多数用户使用。功能完整，运行流畅。</div>
+        <div class="apk-meta">约 7.5 MB · Android 5.0+</div>
+        <div class="apk-btns">
+          <a class="apk-btn gold" href="https://feishu.doubao.com/drive/file/Kwgab3vZKo5o9mx12MOcUXJ6nzg" target="_blank">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M17.6 9.48l1.84-3.18c.16-.31.04-.69-.25-.85-.29-.15-.65-.06-.83.22L16.24 7.7C13.38 6.49 10.16 6.49 8.24 7.7L6.36 4.52C6.24 4.21 5.86 4.1 5.55 4.26c-.28.16-.41.53-.24.85L7.11 9.48C4.01 11.25 1.28 14.44 1 18h22c-.28-3.56-2.3-6.75-5.4-8.52z"/></svg>
+            快速下载
+          </a>
+          <a class="apk-btn outline" href="http://user-henry.github.io/nflshcchat/NFLSHC%20Chat.apk" target="_blank">官方镜像下载</a>
+        </div>
+      </div>
+      <div class="apk-card">
+        <div class="apk-icon">📱</div>
+        <div class="apk-name">NFLSHC Chat pro</div>
+        <div class="apk-desc">专业版，相比标准版拥有更完善的响应式设计，适配更多屏幕尺寸。</div>
+        <div class="apk-meta">约 7.9 MB · Android 5.0+</div>
+        <div class="apk-btns">
+          <a class="apk-btn gold" href="https://feishu.doubao.com/drive/file/DpfibgfL9oZ7Fzx7yvgcWpzvn7b" target="_blank">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M17.6 9.48l1.84-3.18c.16-.31.04-.69-.25-.85-.29-.15-.65-.06-.83.22L16.24 7.7C13.38 6.49 10.16 6.49 8.24 7.7L6.36 4.52C6.24 4.21 5.86 4.1 5.55 4.26c-.28.16-.41.53-.24.85L7.11 9.48C4.01 11.25 1.28 14.44 1 18h22c-.28-3.56-2.3-6.75-5.4-8.52z"/></svg>
+            快速下载
+          </a>
+          <a class="apk-btn outline" href="http://user-henry.github.io/nflshcchat/NFLSHC%20Chat%20pro.apk" target="_blank">官方镜像下载</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="channels-box">
+      <h3>📡 所有下载通道</h3>
+      <div class="channel-row">
+        <a class="ch-btn fast" href="https://feishu.doubao.com/drive/file/Kwgab3vZKo5o9mx12MOcUXJ6nzg" target="_blank">🚀 NFLSHC Chat.apk</a>
+        <a class="ch-btn fast" href="https://feishu.doubao.com/drive/file/DpfibgfL9oZ7Fzx7yvgcWpzvn7b" target="_blank">🚀 NFLSHC Chat pro.apk</a>
+        <a class="ch-btn mirror" href="http://user-henry.github.io/nflshcchat/NFLSHC%20Chat.apk" target="_blank">🌐 标准版官方镜像</a>
+        <a class="ch-btn mirror" href="http://user-henry.github.io/nflshcchat/NFLSHC%20Chat%20pro.apk" target="_blank">🌐 pro版官方镜像</a>
+      </div>
+    </div>
+
+    <div class="requirements">
+      <h3>⚙️ 系统要求</h3>
+      <div class="req-grid">
+        <div class="req-item">Android 5.0 (Lollipop) 及以上</div>
+        <div class="req-item">armeabi-v7a / arm64-v8a 架构</div>
+        <div class="req-item">至少 100 MB 可用存储空间</div>
+        <div class="req-item">互联网连接（用于数据同步）</div>
+        <div class="req-item">NFLSHC Chat 账号（用于登录认证）</div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer" style="position:relative;z-index:10;padding:28px 24px;text-align:center;background:rgba(8,8,20,0.55);">
+    <div style="max-width:1100px;margin:0 auto;">
+      <div style="font-size:13px;color:rgba(255,255,255,0.5);margin-bottom:10px;">
+        <a href="index.html" style="color:var(--gold-light);text-decoration:none;">NFLSHC Chat</a> ·
+        <a href="windows.html" style="color:rgba(255,255,255,0.5);text-decoration:none;">Windows 下载</a> ·
+        <a href="log.html" style="color:rgba(255,255,255,0.5);text-decoration:none;">更新日志</a> ·
+        <a href="https://help.nflshcchat.cc.cd" target="_blank" style="color:rgba(255,255,255,0.5);text-decoration:none;">帮助文档</a> ·
+        <a href="register.html" style="color:rgba(255,255,255,0.5);text-decoration:none;">注册账号</a>
+      </div>
+      <p style="font-size:12px;color:rgba(255,255,255,0.35);">Copyright © 2024-2026 NFLSHC Chat · MIT License</p>
+    </div>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
