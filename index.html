@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NFLSHC Chat - 南外淮安分校专属聊天平台</title>
-  <meta name="description" content="NFLSHC Chat — 南京外国语学校淮安分校学生聊天平台，纯前端 + GitHub Issues 驱动，零服务器、零数据库" />
+  <meta name="description" content="NFLSHC Chat — 南京外国语学校淮安分校学生聊天平台，纯前端 + Cloudflare D1 驱动，零服务器、零数据库" />
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><text y='52' font-size='52'>💬</text></svg>" />
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -43,8 +43,8 @@
     <h1 class="headline">
       <span class="platform-name">NFLSHC Chat</span>
     </h1>
-    <p class="tagline">零服务器 · GitHub Issues 驱动 · 开源免费</p>
-    <p class="hero-desc">纯前端聊天平台，无后端、无数据库，通过 GitHub Issues 实现消息存储、用户认证、数据统计。部署成本为零，功能一应俱全。</p>
+    <p class="tagline">零服务器 · Cloudflare D1 驱动 · 开源免费</p>
+    <p class="hero-desc">纯前端聊天平台，无后端、无数据库，通过 Cloudflare D1 实现消息存储、用户认证、数据统计。部署成本为零，功能一应俱全。</p>
     <div class="hero-ctas">
       <a class="download-btn primary" href="windows.html">
         <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><rect x="2" y="2" width="9" height="9" fill="#F25022"/><rect x="13" y="2" width="9" height="9" fill="#7FBA00"/><rect x="2" y="13" width="9" height="9" fill="#00A4EF"/><rect x="13" y="13" width="9" height="9" fill="#FFB900"/></svg>
@@ -65,7 +65,7 @@
       <div class="feature-card">
         <span class="feat-icon">💬</span>
         <h3>多聊天室</h3>
-        <p>支持多个聊天室，每个聊天室对应一个 GitHub Issue。消息实时收发，支持引用回复、消息置顶、代码高亮（highlight.js）。</p>
+        <p>支持多个聊天室，每个聊天室对应一条 D1 数据记录。消息实时收发，支持引用回复、消息置顶、代码高亮（highlight.js）。</p>
       </div>
       <div class="feature-card">
         <span class="feat-icon">👤</span>
@@ -94,8 +94,8 @@
       </div>
       <div class="feature-card">
         <span class="feat-icon">🔒</span>
-        <h3>GitHub Issues 驱动</h3>
-        <p>每个 Label 是一张"数据表"，每条 Issue 是一条"记录"。GitHub Pages 免费托管，零服务器成本。</p>
+        <h3>Cloudflare D1 驱动</h3>
+        <p>每个业务类型是一张"数据表"，每条数据是一条"记录"。GitHub Pages 免费托管，零服务器成本。</p>
       </div>
       <div class="feature-card">
         <span class="feat-icon">📱</span>
@@ -204,7 +204,7 @@
     <div class="tech-inner">
       <span class="tech-tag">🌐 纯前端</span>
       <span class="tech-sep">×</span>
-      <span class="tech-tag">⚡ GitHub API</span>
+      <span class="tech-tag">⚡ Cloudflare Workers API</span>
       <span class="tech-sep">×</span>
       <span class="tech-tag">📦 GitHub Pages</span>
       <span class="tech-sep">×</span>
@@ -230,10 +230,11 @@
         <a href="register.html">注册账号</a>
         <a href="https://github.com/user-henry/nflshcchat" target="_blank">GitHub</a>
       </div>
-      <p class="copyright">Copyright © 2024-2026 NFLSHC Chat · 基于 GitHub Issues 构建 · MIT License</p>
+      <p class="copyright">Copyright © 2024-2026 NFLSHC Chat · 基于 Cloudflare D1 构建 · MIT License</p>
     </div>
   </footer>
 
   <script src="script.js"></script>
 </body>
 </html>
+
