@@ -1,3 +1,5 @@
+**简体中文** | [English](README.en.md)
+
 # NFLSHC Chat 发布页 · nflshcchat-home
 
 NFLSHC Chat（南外淮安分校学生聊天平台）的**官方网站 / 下载门户**：展示平台功能、提供 Windows 与 Android 客户端下载、记录更新日志，并给出注册与帮助文档入口。
